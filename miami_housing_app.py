@@ -6,6 +6,8 @@ import os
 import time
 import folium
 import streamlit_folium as st_folium  # Import streamlit_folium for Folium integration
+pip install folium
+     
 
 # Load the model
 model_path = os.path.join(os.path.dirname(__file__), 'miami_housing_model')  # Replace with your actual model file name
