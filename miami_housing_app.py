@@ -17,8 +17,6 @@ def app():
   st.title("Miami Housing Price Prediction")
    # Create a map
   m = folium.Map(location=[25.7617, -80.1918], zoom_start=10)  # Centered on Miami
-
-    # Add a marker that can be dragged
   marker = folium.Marker(
     location=[25.7617, -80.1918],  # Initial location
         draggable=True,
