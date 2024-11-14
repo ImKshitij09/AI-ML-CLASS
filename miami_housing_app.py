@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from sklearn.linear_model import LinearRegression
 import os
+import time
 # Load the model
 model_path = os.path.join(os.path.dirname(__file__), 'miami_housing_model') # replace miami_housing_model with the actual file name
 model = joblib.load(model_path)
@@ -48,9 +49,12 @@ def app():
     })
 
   # Make a prediction
-  if st.button("Predict"):
-    prediction = model.predict(input_data)[0]
-    st.success(f"Predicted Price: ${prediction:,.2f}")
+    if st.button("Predict"):
+        with st.spinner('Calculating...'):  # Display a spinner while predicting
+            time.sleep(1)  # Simulate some processing time
+            prediction = model.predict(input_data)[0]
+        st.success(f"Predicted Price: ${prediction:,.2f}")
+        st.balloons()  # Show balloons after prediction
 
 # Run the app
 if __name__ == "__main__":
