@@ -16,29 +16,6 @@ def app():
     # Set up the title
     st.title("Miami Housing Price Prediction")
     
-    # Create a map centered on Miami with a draggable marker
-    m = folium.Map(location=[25.7617, -80.1918], zoom_start=10)  # Miami coordinates
-    marker = folium.Marker(
-        location=[25.7617, -80.1918],  # Initial marker location
-        draggable=True,
-        popup="Drag me to select location"
-    )
-    marker.add_to(m)
-
-    # Display the map in the Streamlit app
-    map_data = st_folium.st_data(m)
-
-    # Get the latitude and longitude of the selected location on the map
-    if map_data and map_data.get("last_object_clicked"):
-        latitude = map_data["last_object_clicked"]["lat"]
-        longitude = map_data["last_object_clicked"]["lng"]
-    else:
-        latitude = 25.7617  # Default latitude if no selection is made
-        longitude = -80.1918  # Default longitude if no selection is made
-
-    # Display the selected coordinates
-    st.write(f"Latitude: {latitude}, Longitude: {longitude}")
-    
     # Create input fields for various features
     latitude = st.number_input("Latitude", value=latitude)
     longitude = st.number_input("Longitude", value=longitude)
