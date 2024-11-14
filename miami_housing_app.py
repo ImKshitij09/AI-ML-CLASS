@@ -22,7 +22,7 @@ def app():
         draggable=True,
         popup="Drag me to select location",
     )
-    marker.add_to(m)
+  marker.add_to(m)
 
     # Display the map
     map_data = st_folium.st_data(m)
