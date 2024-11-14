@@ -5,6 +5,9 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 import os
 import time
+import streamlit_folium as st_folium  # Import streamlit_folium
+import folium  # Import folium for map creation
+
 # Load the model
 model_path = os.path.join(os.path.dirname(__file__), 'miami_housing_model') # replace miami_housing_model with the actual file name
 model = joblib.load(model_path)
@@ -12,6 +15,31 @@ model = joblib.load(model_path)
 # Define the Streamlit app
 def app():
   st.title("Miami Housing Price Prediction")
+   # Create a map
+    m = folium.Map(location=[25.7617, -80.1918], zoom_start=10)  # Centered on Miami
+
+    # Add a marker that can be dragged
+    marker = folium.Marker(
+        location=[25.7617, -80.1918],  # Initial location
+        draggable=True,
+        popup="Drag me to select location",
+    )
+    marker.add_to(m)
+
+    # Display the map
+    map_data = st_folium.st_data(m)
+
+    # Get the selected latitude and longitude from the map
+    if map_data and map_data["last_object_clicked"]:
+        latitude = map_data["last_object_clicked"]["lat"]
+        longitude = map_data["last_object_clicked"]["lng"]
+    else:
+        latitude = 25.7617  # Default latitude
+        longitude = -80.1918  # Default longitude
+
+    # Display the selected coordinates
+    st.write(f"Latitude: {latitude}, Longitude: {longitude}")
+
 
   # Create input fields for features
   latitude = st.number_input("Latitude")
