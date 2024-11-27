@@ -37,13 +37,14 @@ def app():
         col1, col2 = st.columns(2)
 
         with col1:
-            total_load_forecast = st.number_input("Total Load Forecast (MW)", value=0.0, step=0.1)
-            renewable_generation = st.number_input("Renewable Generation (MW)", value=0.0, step=0.1)
+            total_load_forecast = st.slider("Total Load Forecast (MW)", value=0.0, step=0.1)
+            renewable_generation = st.slider("Renewable Generation (MW)", value=0.0, step=0.1)
             hour = st.slider("Hour of Day", 0, 23, value=12)
 
         with col2:
-            fossil_generation = st.number_input("Fossil Generation (MW)", value=0.0, step=0.1)
-            price_actual = st.number_input("Price Actual (€/MWh)", value=0.0, step=0.1)
+            price_day_ahead = st.slider("Price Day Ahead (€/MWh)", value=0.0)
+            fossil_generation = st.slider("Fossil Generation (MW)", value=0.0, step=0.1)
+            price_actual = st.slider("Price Actual (€/MWh)", value=0.0, step=0.1)
             day_of_week = st.selectbox("Day of Week", options=["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], index=0)
 
         month = st.selectbox("Month", options=list(range(1, 13)), format_func=lambda x: f"Month {x}")
