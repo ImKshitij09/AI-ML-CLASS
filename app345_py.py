@@ -10,7 +10,9 @@ Original file is located at
 
 # Load the trained model
 model_path = 'energy_forecasting_model.pkl'
-model = joblib.load(model_path)
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"Model file not found at: {model_path}")
+
 
 # Define the Streamlit app
 def app():
