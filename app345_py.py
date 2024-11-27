@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1s56zneCNovBbSHMbbdzmKGf7lQX0h_H5
 """
 
-
+import os
 # Load the trained model
 model_path = 'energy_forecasting_model.pkl'
 if not os.path.exists(model_path):
