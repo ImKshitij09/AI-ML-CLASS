@@ -70,6 +70,7 @@ def app():
                     'renewable_generation': [renewable_generation],
                     'fossil_generation': [fossil_generation],
                     'price actual': [price_actual],
+                    'price day ahead': [price_day_ahead],
                     'hour': [hour],
                     'day_of_week': [day_of_week],
                     'month': [month]
