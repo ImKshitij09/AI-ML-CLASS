@@ -15,10 +15,14 @@ import numpy as np
 import os
 import time
 # Load the trained model
-model_path = 'energy_forecasting_model.pkl'
-if not os.path.exists(model_path):
-    raise FileNotFoundError(f"Model file not found at: {model_path}")
-
+# Load the trained model
+model_path = "energy_forecasting_model.pkl"
+try:
+    model = joblib.load(model_path)
+except FileNotFoundError:
+    st.error("Model file not found. Please ensure 'energy_forecasting_model.pkl' exists.")
+except Exception as e:
+    st.error(f"Error loading the model: {e}")
 
 # Define the Streamlit app
 def app():
@@ -49,9 +53,13 @@ def app():
 
     # Predict button
     if st.button("Predict"):
-        prediction = model.predict(input_data)[0]
-        st.success(f"Predicted Total Load: {prediction:,.2f} MW")
+        try:
+            prediction = model.predict(input_data)[0]
+            st.success(f"Predicted Total Load: {prediction:,.2f} MW")
+        except Exception as e:
+            st.error(f"Prediction failed: {e}")
 
 # Run the app
 if __name__ == "__main__":
     app()
+
