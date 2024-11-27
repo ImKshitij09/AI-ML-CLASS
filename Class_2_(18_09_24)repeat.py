@@ -1,4 +1,5 @@
-
+import matplotlib
+matplotlib.use('Agg')  # Use the 'Agg' backend for non-GUI environments
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
